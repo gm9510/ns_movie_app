@@ -1,0 +1,37 @@
+{
+  "name": "@nativescript/template-blank",
+  "main": "app.js",
+  "displayName": "Blank",
+  "templateType": "App template",
+  "version": "7.0.4",
+  "description": "NativeScript Application",
+  "author": "NativeScript Team <oss@nativescript.org>",
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "nstudio",
+    "nativescript",
+    "mobile",
+    "nativescript",
+    "{N}",
+    "tns",
+    "template",
+    "category-general"
+  ],
+  "repository": "<fill-your-repository-here>",
+  "homepage": "https://github.com/NativeScript/nativescript-app-templates",
+  "bugs": {
+    "url": "https://github.com/NativeScript/NativeScript/issues"
+  },
+  "dependencies": {
+    "@nativescript/core": "~7.1.0",
+    "@nativescript/theme": "~2.3.0"
+  },
+  "devDependencies": {
+    "@nativescript/webpack": "~4.0.0"
+  },
+  "private": "true",
+  "readme": "NativeScript Application"
+}
