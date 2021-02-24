@@ -1,0 +1,16 @@
+#main{
+    background-color: #f9e79f;
+}
+
+#main .txtKey{
+    padding: 10;
+    vertical-align: center;
+    font-size: 18;
+    font-weight: bold;
+}
+
+#main .txtVal{
+    padding: 10;
+    vertical-align: center;
+    font-size: 18;
+}

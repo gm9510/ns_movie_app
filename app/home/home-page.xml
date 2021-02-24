@@ -1,12 +1,22 @@
 <Page
-    navigatingTo="onNavigatingTo"  
+    loaded="loaded"
+    navigatingTo="onNavigatingTo" 
     xmlns="http://schemas.nativescript.org/tns.xsd">
 
     <ActionBar>
-        <Label text="Home"></Label>
+        <Label text="Hola pelis2"></Label>
     </ActionBar>
 
-    <GridLayout>
-        <!-- Add your page content here -->
+    <GridLayout id="main" columns="auto, auto" rows="auto, auto, auto, auto, auto">
+        <Label class="txtKey" text="Título" row="0" col="0"/>
+        <label class="txtVal" text="{{ Title }}" row="0" col="1"/> 
+        <Label class="txtKey" text="Año" row="1" col="0"/>
+        <label class="txtVal" text="{{ Year }}" row="1" col="1"/> 
+        <Label class="txtKey" text="Director" row="2" col="0"/>
+        <label class="txtVal" text="{{ Director }}" row="2" col="1"/> 
+        <Label class="txtKey" text="Duración" row="3" col="0"/>
+        <label class="txtVal" text="{{ Runtime }}" row="3" col="1"/> 
+        <Label class="txtKey" text="Imagen" row="4" col="0"/>
+        <label class="txtVal" text="{{ Poster }}" row="4" col="1"/> 
     </GridLayout>
 </Page>
