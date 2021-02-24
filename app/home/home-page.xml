@@ -3,20 +3,24 @@
     navigatingTo="onNavigatingTo" 
     xmlns="http://schemas.nativescript.org/tns.xsd">
 
-    <ActionBar>
-        <Label text="Hola pelis2"></Label>
-    </ActionBar>
-
-    <GridLayout id="main" columns="auto, auto" rows="auto, auto, auto, auto, auto">
-        <Label class="txtKey" text="Título" row="0" col="0"/>
-        <label class="txtVal" text="{{ Title }}" row="0" col="1"/> 
-        <Label class="txtKey" text="Año" row="1" col="0"/>
-        <label class="txtVal" text="{{ Year }}" row="1" col="1"/> 
-        <Label class="txtKey" text="Director" row="2" col="0"/>
-        <label class="txtVal" text="{{ Director }}" row="2" col="1"/> 
-        <Label class="txtKey" text="Duración" row="3" col="0"/>
-        <label class="txtVal" text="{{ Runtime }}" row="3" col="1"/> 
-        <Label class="txtKey" text="Imagen" row="4" col="0"/>
-        <label class="txtVal" text="{{ Poster }}" row="4" col="1"/> 
+<ActionBar>
+    <Label text="Hola pelis2"></Label>
+</ActionBar>
+<ScrollView orientation="vertical">
+    <GridLayout id="main" columns="*, *" rows="auto, auto, auto, auto, auto, auto" 
+        swipe="onSwipe">
+    <Image class = "{{ !isLoading ? 'visible':'' }}" src="{{ Poster }}" row="0" col="0" colSpan="2"></Image>
+<ActivityIndicator busy="{{ isLoading }}" row="0" col="0" colSpan="2" horizontalAlignment="center" verticalAlignment="center"/>
+        <Label class="txtKey" text="Título" row="1" col="0"/>
+        <label class="txtVal" text="{{ Title }}" row="1" col="1"/> 
+        <Label class="txtKey" text="Año" row="2" col="0"/>
+        <label class="txtVal" text="{{ Year }}" row="2" col="1"/> 
+        <Label class="txtKey" text="Director" row="3" col="0"/>
+        <label class="txtVal" text="{{ Director }}" row="3" col="1"/> 
+        <Label class="txtKey" text="Duración" row="4" col="0"/>
+        <label class="txtVal" text="{{ Runtime }}" row="4" col="1"/> 
+        <Label class="txtKey" text="Genero" row="5" col="0"/>
+        <label class="txtVal" text="{{ Genre }}" row="5" col="1"/> 
     </GridLayout>
+</ScrollView>
 </Page>
