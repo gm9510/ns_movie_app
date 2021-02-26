@@ -1,60 +1,37 @@
 const core = require("@nativescript/core");
 const { apiUrl, apiKey } = require("./../config");
 
-const film_title = ["superbad", "titanic", "avatar", "suspiria", "furious+7", "anabelle"]; 
-
 function HomeViewModel() {
+    var movieList = new core.ObservableArray([]);
     const viewModel = core.fromObject({
         /* Add your view model properties here */
-        index: 0,
-        Title: "Pelicula",
-        Year: "2000",
-        Director: "Alguien",
-        Runtime: "90 min",
-        Genre: "Acción",
-        Poster: "Link",
-        isLoading: false
+        movieList: movieList,
     });
 
-    viewModel.requestMovie = async() => {
-        var index = viewModel.get("index");
-        console.log(index);
 
-        const URL = `${apiUrl}?t=${film_title[index]}&apikey=${apiKey}`;
+    viewModel.searchMovie = async() => {
+
+        const URL = `${apiUrl}?s=halloween&apikey=${apiKey}`;
         const response = await fetch(URL);
-        const { Title, Year, Director, Runtime, Genre, Poster } = await response.json();
+        const { Search }  = await response.json();
 
-        console.log({Title});
+        Search.forEach( (movie)  => {
+            let { imdbID, Title, Poster } = movie;
+            console.log( { imdbID, Title, Poster } );
 
-        viewModel.set("Title",Title);
-        viewModel.set("Year",Year);
-        viewModel.set("Director",Director);
-        viewModel.set("Runtime",Runtime);
-        viewModel.set("Genre",Genre);
-        viewModel.set("Poster",Poster);
+            viewModel.get("movieList").push({
+                imdbId: imdbID, 
+                title: Title,
+                poster: Poster
+            });
+        });
+
     };
 
-
-    viewModel.requestMovie = async(dir) => {
-        let index = viewModel.get("index");
-
-        if( index < 0 ) index = film_title.length -1;
-        else if ( index >= film_title.length ) index = 0; 
-
-        viewModel.set("index",index);
-
-        const URL = `${apiUrl}?t=${film_title[index]}&apikey=${apiKey}`;
-        const response = await fetch(URL);
-        const { Title, Year, Director, Runtime, Genre, Poster } = await response.json();
-
-        console.log({Title});
-
-        viewModel.set("Title",Title);
-        viewModel.set("Year",Year);
-        viewModel.set("Director",Director);
-        viewModel.set("Runtime",Runtime);
-        viewModel.set("Genre",Genre);
-        viewModel.set("Poster",Poster);
+    viewModel.emptyList = () => {
+        while (viewModel.get("movieList").length) {
+            viewModel.get("movieList").pop();
+        }
     };
 
     return viewModel;
