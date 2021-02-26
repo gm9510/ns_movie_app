@@ -12,6 +12,7 @@
                 <StackLayout tap="onTap">
                     <Image src="{{ poster }}"></Image>
                     <Label class=" h3 p-15" text="{{ title }}"/>
+                    <Label style="visibility: collapse;"  text="{{ imdbId }}"/>
                 </StackLayout>
             </lv:RadListView.itemTemplate>
         </lv:RadListView>

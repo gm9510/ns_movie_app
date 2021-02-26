@@ -38,6 +38,11 @@ function MovieViewModel() {
         viewModel.set("index",index);
     };
 
+    viewModel.pickId = ( id ) =>{
+        let index = viewModel.get("imdbId_list").indexOf( id ); 
+        viewModel.set("index", index);
+    };
+
     return viewModel;
 }
 

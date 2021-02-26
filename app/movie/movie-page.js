@@ -5,8 +5,9 @@ var movie = new MovieViewModel();
 
 function onNavigatingTo(args) {
     const page = args.object;
-    var { imdbId_list } = args.context;
+    var { id, imdbId_list } = args.context;
     console.log("Movie Page Loaded");
+    movie.pickId( id );
     movie.set("imdbId_list", imdbId_list);
     movie.set("isLoading", true);
     movie.requestMovie().then( () =>{
@@ -43,7 +44,7 @@ exports.onSwipe = onSwipe;
 
 function onNavBtnTap(){
     console.log("Back btn tapped");
-    Frame.goBack();
+    Frame.topmost().navigate("home/home-page");
 }
 
 exports.onNavBtnTap = onNavBtnTap;

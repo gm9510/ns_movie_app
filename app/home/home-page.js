@@ -17,12 +17,13 @@ function onNavigatingTo(args) {
 exports.onNavigatingTo = onNavigatingTo;
 
 function onTap(args) {
-    movieStack = args.object;
-    console.log("|--->" + movieStack.getChildAt(1));
+    const movieStack = args.object;
+    let id = movieStack.getChildAt(2).text;
     let imdbId_list = home.get("movieList").map( (movie) => movie.imdbId );
     const entryContext = {
         moduleName: "movie/movie-page",
         context: {
+            id: id,
             imdbId_list: imdbId_list,
         },
         transition: {
