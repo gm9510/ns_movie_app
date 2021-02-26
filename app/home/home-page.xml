@@ -1,26 +1,19 @@
-<Page
-    loaded="loaded"
-    navigatingTo="onNavigatingTo" 
-    xmlns="http://schemas.nativescript.org/tns.xsd">
+<Page loaded="loaded" navigatingTo="onNavigatingTo" xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:lv="nativescript-ui-listview">
 
-<ActionBar>
-    <Label text="Hola pelis2"></Label>
-</ActionBar>
-<ScrollView orientation="vertical">
-    <GridLayout id="main" columns="*, *" rows="auto, auto, auto, auto, auto, auto" 
-        swipe="onSwipe">
-    <Image class = "{{ !isLoading ? 'visible':'' }}" src="{{ Poster }}" row="0" col="0" colSpan="2"></Image>
-<ActivityIndicator busy="{{ isLoading }}" row="0" col="0" colSpan="2" horizontalAlignment="center" verticalAlignment="center"/>
-        <Label class="txtKey" text="Título" row="1" col="0"/>
-        <label class="txtVal" text="{{ Title }}" row="1" col="1"/> 
-        <Label class="txtKey" text="Año" row="2" col="0"/>
-        <label class="txtVal" text="{{ Year }}" row="2" col="1"/> 
-        <Label class="txtKey" text="Director" row="3" col="0"/>
-        <label class="txtVal" text="{{ Director }}" row="3" col="1"/> 
-        <Label class="txtKey" text="Duración" row="4" col="0"/>
-        <label class="txtVal" text="{{ Runtime }}" row="4" col="1"/> 
-        <Label class="txtKey" text="Genero" row="5" col="0"/>
-        <label class="txtVal" text="{{ Genre }}" row="5" col="1"/> 
+    <ActionBar>
+        <Label text="Hola pelis2"></Label>
+    </ActionBar>
+    <GridLayout rows="*" cols="*">
+        <lv:RadListView items="{{ movieList }}" height="720">
+            <lv:RadListView.listViewLayout>
+                <lv:ListViewGridLayout scrollDirection="Vertical" itemHeight="250" spanCount="2"/>
+            </lv:RadListView.listViewLayout>
+            <lv:RadListView.itemTemplate>
+                <StackLayout tap="onTap">
+                    <Image src="{{ poster }}"></Image>
+                    <Label class=" h3 p-15" text="{{ title }}"/>
+                </StackLayout>
+            </lv:RadListView.itemTemplate>
+        </lv:RadListView>
     </GridLayout>
-</ScrollView>
 </Page>
