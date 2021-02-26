@@ -1,3 +1,4 @@
+const Frame = require("@nativescript/core/ui/frame").Frame; 
 const HomeViewModel = require("./home-view-model");
 
 var home = new HomeViewModel();
@@ -5,8 +6,9 @@ var home = new HomeViewModel();
 function onNavigatingTo(args) {
     const page = args.object;
     console.log("Page Loaded");
+    home.emptyList();
     home.set("isLoading", true);
-    home.requestMovie().then( () =>{
+    home.searchMovie().then( () =>{
         home.set("isLoading", false);
     });
     page.bindingContext = home;
@@ -14,31 +16,22 @@ function onNavigatingTo(args) {
 
 exports.onNavigatingTo = onNavigatingTo;
 
-function onSwipe(args) {
-    let index = home.get("index");
-    switch (args.direction){
-        case 1:
-            //home.rightSwipe();
-            home.set("index",index-1);
-            home.set("isLoading", true);
-            home.requestMovie().then( () =>{
-                home.set("isLoading", false);
-            });
-            console.log("right");
-            break;
-        case 2:
-            //home.leftSwipe();
-            home.set("index",index+1);
-            home.set("isLoading", true);
-            home.requestMovie().then( () =>{
-                home.set("isLoading", false);
-            });
-            console.log("left");
-            break;
-    }
+function onTap(args) {
+    movieStack = args.object;
+    console.log("|--->" + movieStack.getChildAt(1));
+    let imdbId_list = home.get("movieList").map( (movie) => movie.imdbId );
+    const entryContext = {
+        moduleName: "movie/movie-page",
+        context: {
+            imdbId_list: imdbId_list,
+        },
+        transition: {
+            name: "slide",
+            duration: 380,
+            curve: "easeIn"
+        }
+    };
+    Frame.topmost().navigate(entryContext);
 }
 
-exports.onSwipe = onSwipe;
-
-
-
+exports.onTap = onTap;
