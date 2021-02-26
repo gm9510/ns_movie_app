@@ -28,6 +28,7 @@
   "dependencies": {
     "@nativescript/core": "~7.1.0",
     "@nativescript/theme": "~2.3.0",
+    "nativescript-ui-listview": "^9.1.0",
     "typescript": "^4.1.5"
   },
   "devDependencies": {
